@@ -797,9 +797,9 @@ static void simulate_WRITE_RO(char *arg)
 	ptr = (unsigned long *)__start_rodata;
 	*ptr ^= 0x12345678;
 #else
-	ptr = (unsigned long *)simulate_WRITE_RO;
-#endif
+	ptr = NULL;
 	*ptr ^= 0x0;
+#endif
 }
 
 #define BUFFER_SIZE SZ_1K
