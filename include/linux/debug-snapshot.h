@@ -173,7 +173,7 @@ static inline int secdbg_show_busy_task(unsigned int cpu, unsigned long long dur
         return -1;
 }
 
-static struct task_struct *get_the_busiest_task(void)
+static struct task_struct __maybe_unused *get_the_busiest_task(void)
 {
 	return NULL;
 }
