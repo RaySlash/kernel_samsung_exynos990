@@ -759,6 +759,7 @@ void secdbg_exin_get_extra_info_T(char *ptr)
 	sec_debug_store_extra_info(tkeys, nr_keys, ptr);
 }
 
+#ifdef CONFIG_SEC_DEBUG_RESET_REASON
 static void __init sec_debug_set_extra_info_id(void)
 {
 	struct timespec ts;
@@ -771,7 +772,7 @@ static void __init sec_debug_set_extra_info_id(void)
 	set_item_val("PSITE", "%d", id_get_product_line());
 	set_item_val("DDRID", "%s", dram_info);
 }
-
+#endif
 static void secdbg_exin_set_ktime(void)
 {
 	u64 ts_nsec;
@@ -1258,6 +1259,7 @@ static void test_v3(void *seqm)
 }
 
 /*********** TEST V3 **************************************/
+#ifdef CONFIG_SEC_DEBUG_RESET_REASON
 static int set_debug_reset_rwc_proc_show(struct seq_file *m, void *v)
 {
 	char *rstcnt;
@@ -1307,7 +1309,7 @@ static const struct file_operations sec_debug_reset_extra_info_proc_fops = {
 	.llseek = seq_lseek,
 	.release = single_release,
 };
-
+#endif
 static int __init sec_hw_param_get_dram_info(char *arg)
 {
 	if (strlen(arg) > MAX_DRAMINFO)
@@ -1355,14 +1357,15 @@ static int __init secdbg_extra_info_init(void)
 
 	proc_set_size(entry, SZ_1K);
 
+#ifdef CONFIG_SEC_DEBUG_RESET_REASON
 	entry = proc_create("reset_rwc", S_IWUGO, NULL,
 				&sec_debug_reset_rwc_proc_fops);
-
+#endif
 	if (!entry)
 		return -ENOMEM;
-
+#ifdef CONFIG_SEC_DEBUG_RESET_REASON
 	sec_debug_set_extra_info_id();
-
+#endif
 	return 0;
 }
 late_initcall(secdbg_extra_info_init);

@@ -27,7 +27,6 @@ fw-external-$(CONFIG_EPEN_WACOM_W9020) += epen/w9020_c2.bin epen/w9020_c2_dv1.bi
 fw-external-$(CONFIG_WIRELESS_FIRMWARE_UPDATE) += mfc/mfc_fw_flash.bin
 fw-external-$(CONFIG_WIRELESS_CHARGER_MFC_S2MIW04) += mfc/mfc_fw_flash_s2miw04.bin
 
-fw-external-$(CONFIG_KEYBOARD_STM_FSR) += key_stm/fsr1ad04_p2.fw
 fw-external-$(CONFIG_NPU_PERF_FW) += npu_perf/NPU_perf.bin
 fw-external-$(CONFIG_NPU_PERF_FW) += npu_dn/NPU_dn.bin
 
